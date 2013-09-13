@@ -49,7 +49,7 @@
             // 
             this.GroupColorPanels.Location = new System.Drawing.Point(13, 13);
             this.GroupColorPanels.Name = "GroupColorPanels";
-            this.GroupColorPanels.Size = new System.Drawing.Size(380, 380);
+            this.GroupColorPanels.Size = new System.Drawing.Size(407, 380);
             this.GroupColorPanels.TabIndex = 0;
             this.GroupColorPanels.TabStop = false;
             this.GroupColorPanels.Text = "Colors";
@@ -57,7 +57,7 @@
             // LabelColorIndex
             // 
             this.LabelColorIndex.AutoSize = true;
-            this.LabelColorIndex.Location = new System.Drawing.Point(399, 33);
+            this.LabelColorIndex.Location = new System.Drawing.Point(423, 34);
             this.LabelColorIndex.Name = "LabelColorIndex";
             this.LabelColorIndex.Size = new System.Drawing.Size(51, 13);
             this.LabelColorIndex.TabIndex = 1;
@@ -66,7 +66,7 @@
             // LabelStaticRed
             // 
             this.LabelStaticRed.AutoSize = true;
-            this.LabelStaticRed.Location = new System.Drawing.Point(411, 54);
+            this.LabelStaticRed.Location = new System.Drawing.Point(435, 55);
             this.LabelStaticRed.Name = "LabelStaticRed";
             this.LabelStaticRed.Size = new System.Drawing.Size(17, 13);
             this.LabelStaticRed.TabIndex = 2;
@@ -74,14 +74,14 @@
             // 
             // TextRed
             // 
-            this.TextRed.Location = new System.Drawing.Point(434, 51);
+            this.TextRed.Location = new System.Drawing.Point(458, 52);
             this.TextRed.Name = "TextRed";
             this.TextRed.Size = new System.Drawing.Size(28, 22);
             this.TextRed.TabIndex = 3;
             // 
             // TextGreen
             // 
-            this.TextGreen.Location = new System.Drawing.Point(488, 51);
+            this.TextGreen.Location = new System.Drawing.Point(512, 52);
             this.TextGreen.Name = "TextGreen";
             this.TextGreen.Size = new System.Drawing.Size(28, 22);
             this.TextGreen.TabIndex = 5;
@@ -89,7 +89,7 @@
             // LabelStaticGreen
             // 
             this.LabelStaticGreen.AutoSize = true;
-            this.LabelStaticGreen.Location = new System.Drawing.Point(468, 54);
+            this.LabelStaticGreen.Location = new System.Drawing.Point(492, 55);
             this.LabelStaticGreen.Name = "LabelStaticGreen";
             this.LabelStaticGreen.Size = new System.Drawing.Size(18, 13);
             this.LabelStaticGreen.TabIndex = 4;
@@ -98,7 +98,7 @@
             // LabelStaticBlue
             // 
             this.LabelStaticBlue.AutoSize = true;
-            this.LabelStaticBlue.Location = new System.Drawing.Point(522, 54);
+            this.LabelStaticBlue.Location = new System.Drawing.Point(546, 55);
             this.LabelStaticBlue.Name = "LabelStaticBlue";
             this.LabelStaticBlue.Size = new System.Drawing.Size(17, 13);
             this.LabelStaticBlue.TabIndex = 6;
@@ -106,7 +106,7 @@
             // 
             // TextBlue
             // 
-            this.TextBlue.Location = new System.Drawing.Point(545, 51);
+            this.TextBlue.Location = new System.Drawing.Point(569, 52);
             this.TextBlue.Name = "TextBlue";
             this.TextBlue.Size = new System.Drawing.Size(28, 22);
             this.TextBlue.TabIndex = 7;
@@ -114,7 +114,7 @@
             // LabelStaticHex
             // 
             this.LabelStaticHex.AutoSize = true;
-            this.LabelStaticHex.Location = new System.Drawing.Point(399, 82);
+            this.LabelStaticHex.Location = new System.Drawing.Point(423, 83);
             this.LabelStaticHex.Name = "LabelStaticHex";
             this.LabelStaticHex.Size = new System.Drawing.Size(29, 13);
             this.LabelStaticHex.TabIndex = 8;
@@ -122,14 +122,14 @@
             // 
             // TextHex
             // 
-            this.TextHex.Location = new System.Drawing.Point(434, 79);
+            this.TextHex.Location = new System.Drawing.Point(458, 80);
             this.TextHex.Name = "TextHex";
             this.TextHex.Size = new System.Drawing.Size(139, 22);
             this.TextHex.TabIndex = 9;
             // 
             // ButtonAdvanced
             // 
-            this.ButtonAdvanced.Location = new System.Drawing.Point(402, 136);
+            this.ButtonAdvanced.Location = new System.Drawing.Point(426, 137);
             this.ButtonAdvanced.Name = "ButtonAdvanced";
             this.ButtonAdvanced.Size = new System.Drawing.Size(171, 23);
             this.ButtonAdvanced.TabIndex = 10;
@@ -138,7 +138,7 @@
             // 
             // ButtonOK
             // 
-            this.ButtonOK.Location = new System.Drawing.Point(402, 340);
+            this.ButtonOK.Location = new System.Drawing.Point(426, 341);
             this.ButtonOK.Name = "ButtonOK";
             this.ButtonOK.Size = new System.Drawing.Size(171, 23);
             this.ButtonOK.TabIndex = 11;
@@ -148,7 +148,7 @@
             // ButtonCancel
             // 
             this.ButtonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.ButtonCancel.Location = new System.Drawing.Point(402, 369);
+            this.ButtonCancel.Location = new System.Drawing.Point(426, 370);
             this.ButtonCancel.Name = "ButtonCancel";
             this.ButtonCancel.Size = new System.Drawing.Size(171, 23);
             this.ButtonCancel.TabIndex = 12;
@@ -157,7 +157,7 @@
             // 
             // ButtonSetColor
             // 
-            this.ButtonSetColor.Location = new System.Drawing.Point(402, 107);
+            this.ButtonSetColor.Location = new System.Drawing.Point(426, 108);
             this.ButtonSetColor.Name = "ButtonSetColor";
             this.ButtonSetColor.Size = new System.Drawing.Size(171, 23);
             this.ButtonSetColor.TabIndex = 13;
@@ -174,7 +174,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.ButtonCancel;
-            this.ClientSize = new System.Drawing.Size(575, 406);
+            this.ClientSize = new System.Drawing.Size(609, 406);
             this.Controls.Add(this.ButtonSetColor);
             this.Controls.Add(this.ButtonCancel);
             this.Controls.Add(this.ButtonOK);

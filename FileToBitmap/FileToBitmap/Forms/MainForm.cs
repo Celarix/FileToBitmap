@@ -18,8 +18,7 @@ namespace FileToBitmap.Forms
 
         private void ButtonPaletteSelector_Click(object sender, EventArgs e)
         {
-            Colors.Palette palette = new Colors.Palette(BitDepth.FourBpp);
-            new PaletteEditorForm(Colors.Palette.OneBppDefaultPalette).ShowDialog();
+            Colors.Palette palette = new Colors.Palette(BitDepth.OneBpp);
         }
     }
 }
