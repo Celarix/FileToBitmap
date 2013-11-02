@@ -58,8 +58,10 @@ namespace FileToBitmap.Colors
                     this.colors = new Color[256];
                     break;
                 default:
-                    throw new Exception(String.Format("Invalid bit depth {0}", bitDepth.ToString()));
+                    throw new Exception(String.Format("Invalid bit depth {0}.", bitDepth.ToString()));
             }
+
+            this.colors.Length.Times(i => this.colors[i] = Color.Black); // oh, this is nice.
 
             if (!hasAssignedPalettes)
             {
@@ -149,11 +151,21 @@ namespace FileToBitmap.Colors
 
         public static Color Get16BitColor(ushort value)
         {
-            int red = (value & 0xF800) >> 10;
-            int green = (value & 0x7E0) >> 5;
+            int red = (value & 0xF800) >> 11;
+            int green = (value & 0x7E0) >> 6;
             int blue = (value & 0x1F);
 
             return Color.FromArgb(fiveBitRange[red], sixBitRange[green], fiveBitRange[blue]);
+        }
+
+        public Palette Clone()
+        {
+            Palette clone = new Palette(this.BitDepth);
+            for (int i = 0; i < this.colors.Length; i++)
+            {
+                clone.SetColor(i, this.colors[i]);
+            }
+            return clone;
         }
 
         private Dictionary<int, int> GetEquidistantHexValues(int range)

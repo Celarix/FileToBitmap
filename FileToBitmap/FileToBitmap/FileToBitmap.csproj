@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -46,6 +47,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Drawing\BitmapBase.cs" />
+    <Compile Include="Drawing\DrawerBase.cs" />
+    <Compile Include="Drawing\EightBppBitmap.cs" />
+    <Compile Include="Drawing\EightBppDrawer.cs" />
+    <Compile Include="Drawing\FourBppBitmap.cs" />
+    <Compile Include="Drawing\FourBppDrawer.cs" />
+    <Compile Include="Drawing\OneBppBitmap.cs" />
+    <Compile Include="Drawing\OneBppDrawer.cs" />
+    <Compile Include="Drawing\SixteenBppBitmap.cs" />
+    <Compile Include="Drawing\SixteenBppDrawer.cs" />
+    <Compile Include="Drawing\ThirtyTwoBppBitmap.cs" />
+    <Compile Include="Drawing\ThirtyTwoBppDrawer.cs" />
+    <Compile Include="Drawing\TwentyFourBppBitmap.cs" />
+    <Compile Include="Drawing\TwentyFourBppDrawer.cs" />
+    <Compile Include="Drawing\TwoBppBitmap.cs" />
+    <Compile Include="Drawing\TwoBppDrawer.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -60,6 +77,7 @@
       <DependentUpon>PaletteEditorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Colors\Palette.cs" />
+    <Compile Include="NumericExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\MainForm.resx">

@@ -30,6 +30,8 @@
         {
             this.PictureViewer = new System.Windows.Forms.PictureBox();
             this.GroupFile = new System.Windows.Forms.GroupBox();
+            this.ButtonCancel = new System.Windows.Forms.Button();
+            this.ButtonRefresh = new System.Windows.Forms.Button();
             this.ButtonSaveFile = new System.Windows.Forms.Button();
             this.ButtonOpenFile = new System.Windows.Forms.Button();
             this.GroupBitDepth = new System.Windows.Forms.GroupBox();
@@ -45,6 +47,10 @@
             this.RadioCustom = new System.Windows.Forms.RadioButton();
             this.RadioGrayscale = new System.Windows.Forms.RadioButton();
             this.RadioColor = new System.Windows.Forms.RadioButton();
+            this.WorkerDrawer = new System.ComponentModel.BackgroundWorker();
+            this.ProgressDraw = new System.Windows.Forms.ProgressBar();
+            this.OpenFile = new System.Windows.Forms.OpenFileDialog();
+            this.SaveFile = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.PictureViewer)).BeginInit();
             this.GroupFile.SuspendLayout();
             this.GroupBitDepth.SuspendLayout();
@@ -59,22 +65,45 @@
             this.PictureViewer.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.PictureViewer.Location = new System.Drawing.Point(13, 13);
             this.PictureViewer.Name = "PictureViewer";
-            this.PictureViewer.Size = new System.Drawing.Size(527, 424);
+            this.PictureViewer.Size = new System.Drawing.Size(527, 431);
             this.PictureViewer.TabIndex = 0;
             this.PictureViewer.TabStop = false;
             // 
             // GroupFile
             // 
             this.GroupFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.GroupFile.Controls.Add(this.ButtonCancel);
+            this.GroupFile.Controls.Add(this.ButtonRefresh);
             this.GroupFile.Controls.Add(this.ButtonSaveFile);
             this.GroupFile.Controls.Add(this.ButtonOpenFile);
             this.GroupFile.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GroupFile.Location = new System.Drawing.Point(547, 13);
             this.GroupFile.Name = "GroupFile";
-            this.GroupFile.Size = new System.Drawing.Size(135, 98);
+            this.GroupFile.Size = new System.Drawing.Size(135, 135);
             this.GroupFile.TabIndex = 1;
             this.GroupFile.TabStop = false;
             this.GroupFile.Text = "File";
+            // 
+            // ButtonCancel
+            // 
+            this.ButtonCancel.Enabled = false;
+            this.ButtonCancel.Location = new System.Drawing.Point(7, 110);
+            this.ButtonCancel.Name = "ButtonCancel";
+            this.ButtonCancel.Size = new System.Drawing.Size(122, 23);
+            this.ButtonCancel.TabIndex = 3;
+            this.ButtonCancel.Text = "C&ancel";
+            this.ButtonCancel.UseVisualStyleBackColor = true;
+            this.ButtonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
+            // 
+            // ButtonRefresh
+            // 
+            this.ButtonRefresh.Location = new System.Drawing.Point(7, 80);
+            this.ButtonRefresh.Name = "ButtonRefresh";
+            this.ButtonRefresh.Size = new System.Drawing.Size(122, 23);
+            this.ButtonRefresh.TabIndex = 2;
+            this.ButtonRefresh.Text = "&Refresh";
+            this.ButtonRefresh.UseVisualStyleBackColor = true;
+            this.ButtonRefresh.Click += new System.EventHandler(this.ButtonRefresh_Click);
             // 
             // ButtonSaveFile
             // 
@@ -85,6 +114,7 @@
             this.ButtonSaveFile.TabIndex = 1;
             this.ButtonSaveFile.Text = "&Save...";
             this.ButtonSaveFile.UseVisualStyleBackColor = true;
+            this.ButtonSaveFile.Click += new System.EventHandler(this.ButtonSaveFile_Click);
             // 
             // ButtonOpenFile
             // 
@@ -95,6 +125,7 @@
             this.ButtonOpenFile.TabIndex = 0;
             this.ButtonOpenFile.Text = "&Open...";
             this.ButtonOpenFile.UseVisualStyleBackColor = true;
+            this.ButtonOpenFile.Click += new System.EventHandler(this.ButtonOpenFile_Click);
             // 
             // GroupBitDepth
             // 
@@ -107,7 +138,7 @@
             this.GroupBitDepth.Controls.Add(this.Radio2Bpp);
             this.GroupBitDepth.Controls.Add(this.Radio1Bpp);
             this.GroupBitDepth.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GroupBitDepth.Location = new System.Drawing.Point(547, 118);
+            this.GroupBitDepth.Location = new System.Drawing.Point(547, 154);
             this.GroupBitDepth.Name = "GroupBitDepth";
             this.GroupBitDepth.Size = new System.Drawing.Size(135, 191);
             this.GroupBitDepth.TabIndex = 2;
@@ -125,6 +156,7 @@
             this.Radio32Bpp.TabStop = true;
             this.Radio32Bpp.Text = "32 bits (4.2b shades)";
             this.Radio32Bpp.UseVisualStyleBackColor = true;
+            this.Radio32Bpp.CheckedChanged += new System.EventHandler(this.Radio32Bpp_CheckedChanged);
             // 
             // Radio24Bpp
             // 
@@ -137,6 +169,7 @@
             this.Radio24Bpp.TabStop = true;
             this.Radio24Bpp.Text = "24 bits (16.7m colors)";
             this.Radio24Bpp.UseVisualStyleBackColor = true;
+            this.Radio24Bpp.CheckedChanged += new System.EventHandler(this.Radio24Bpp_CheckedChanged);
             // 
             // Radio16Bpp
             // 
@@ -149,6 +182,7 @@
             this.Radio16Bpp.TabStop = true;
             this.Radio16Bpp.Text = "16 bits (64k colors)";
             this.Radio16Bpp.UseVisualStyleBackColor = true;
+            this.Radio16Bpp.CheckedChanged += new System.EventHandler(this.Radio16Bpp_CheckedChanged);
             // 
             // Radio8Bpp
             // 
@@ -161,6 +195,7 @@
             this.Radio8Bpp.TabStop = true;
             this.Radio8Bpp.Text = "8 bits (256 colors)";
             this.Radio8Bpp.UseVisualStyleBackColor = true;
+            this.Radio8Bpp.CheckedChanged += new System.EventHandler(this.Radio8Bpp_CheckedChanged);
             // 
             // Radio4Bpp
             // 
@@ -173,6 +208,7 @@
             this.Radio4Bpp.TabStop = true;
             this.Radio4Bpp.Text = "4 bits (16 colors)";
             this.Radio4Bpp.UseVisualStyleBackColor = true;
+            this.Radio4Bpp.CheckedChanged += new System.EventHandler(this.Radio4Bpp_CheckedChanged);
             // 
             // Radio2Bpp
             // 
@@ -185,6 +221,7 @@
             this.Radio2Bpp.TabStop = true;
             this.Radio2Bpp.Text = "2 bits (4 colors)";
             this.Radio2Bpp.UseVisualStyleBackColor = true;
+            this.Radio2Bpp.CheckedChanged += new System.EventHandler(this.Radio2Bpp_CheckedChanged);
             // 
             // Radio1Bpp
             // 
@@ -197,6 +234,7 @@
             this.Radio1Bpp.TabStop = true;
             this.Radio1Bpp.Text = "1 bit (2 colors)";
             this.Radio1Bpp.UseVisualStyleBackColor = true;
+            this.Radio1Bpp.CheckedChanged += new System.EventHandler(this.Radio1Bpp_CheckedChanged);
             // 
             // GroupPalette
             // 
@@ -206,7 +244,7 @@
             this.GroupPalette.Controls.Add(this.RadioGrayscale);
             this.GroupPalette.Controls.Add(this.RadioColor);
             this.GroupPalette.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GroupPalette.Location = new System.Drawing.Point(547, 316);
+            this.GroupPalette.Location = new System.Drawing.Point(547, 351);
             this.GroupPalette.Name = "GroupPalette";
             this.GroupPalette.Size = new System.Drawing.Size(135, 121);
             this.GroupPalette.TabIndex = 3;
@@ -215,6 +253,7 @@
             // 
             // ButtonPaletteSelector
             // 
+            this.ButtonPaletteSelector.Enabled = false;
             this.ButtonPaletteSelector.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonPaletteSelector.Location = new System.Drawing.Point(7, 90);
             this.ButtonPaletteSelector.Name = "ButtonPaletteSelector";
@@ -232,9 +271,9 @@
             this.RadioCustom.Name = "RadioCustom";
             this.RadioCustom.Size = new System.Drawing.Size(102, 17);
             this.RadioCustom.TabIndex = 2;
-            this.RadioCustom.TabStop = true;
             this.RadioCustom.Text = "C&ustom Palette";
             this.RadioCustom.UseVisualStyleBackColor = true;
+            this.RadioCustom.CheckedChanged += new System.EventHandler(this.RadioCustom_CheckedChanged);
             // 
             // RadioGrayscale
             // 
@@ -244,13 +283,14 @@
             this.RadioGrayscale.Name = "RadioGrayscale";
             this.RadioGrayscale.Size = new System.Drawing.Size(73, 17);
             this.RadioGrayscale.TabIndex = 1;
-            this.RadioGrayscale.TabStop = true;
             this.RadioGrayscale.Text = "&Grayscale";
             this.RadioGrayscale.UseVisualStyleBackColor = true;
+            this.RadioGrayscale.CheckedChanged += new System.EventHandler(this.RadioGrayscale_CheckedChanged);
             // 
             // RadioColor
             // 
             this.RadioColor.AutoSize = true;
+            this.RadioColor.Checked = true;
             this.RadioColor.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RadioColor.Location = new System.Drawing.Point(7, 20);
             this.RadioColor.Name = "RadioColor";
@@ -259,12 +299,40 @@
             this.RadioColor.TabStop = true;
             this.RadioColor.Text = "&Color";
             this.RadioColor.UseVisualStyleBackColor = true;
+            this.RadioColor.CheckedChanged += new System.EventHandler(this.RadioColor_CheckedChanged);
+            // 
+            // WorkerDrawer
+            // 
+            this.WorkerDrawer.WorkerReportsProgress = true;
+            this.WorkerDrawer.WorkerSupportsCancellation = true;
+            this.WorkerDrawer.DoWork += new System.ComponentModel.DoWorkEventHandler(this.WorkerDrawer_DoWork);
+            this.WorkerDrawer.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.WorkerDrawer_ProgressChanged);
+            this.WorkerDrawer.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.WorkerDrawer_RunWorkerCompleted);
+            // 
+            // ProgressDraw
+            // 
+            this.ProgressDraw.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProgressDraw.Location = new System.Drawing.Point(13, 451);
+            this.ProgressDraw.Name = "ProgressDraw";
+            this.ProgressDraw.Size = new System.Drawing.Size(527, 23);
+            this.ProgressDraw.TabIndex = 4;
+            // 
+            // OpenFile
+            // 
+            this.OpenFile.Filter = "All files|*.*";
+            // 
+            // SaveFile
+            // 
+            this.SaveFile.Filter = "Portable Network Graphics|*.png|Joint Experts Photography Group|*.jpg|Graphics In" +
+    "terchange Format|*.gif";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(694, 449);
+            this.ClientSize = new System.Drawing.Size(694, 484);
+            this.Controls.Add(this.ProgressDraw);
             this.Controls.Add(this.GroupPalette);
             this.Controls.Add(this.GroupBitDepth);
             this.Controls.Add(this.GroupFile);
@@ -300,6 +368,12 @@
         private System.Windows.Forms.RadioButton RadioCustom;
         private System.Windows.Forms.RadioButton RadioGrayscale;
         private System.Windows.Forms.RadioButton RadioColor;
+        private System.Windows.Forms.Button ButtonRefresh;
+        private System.ComponentModel.BackgroundWorker WorkerDrawer;
+        private System.Windows.Forms.ProgressBar ProgressDraw;
+        private System.Windows.Forms.OpenFileDialog OpenFile;
+        private System.Windows.Forms.Button ButtonCancel;
+        private System.Windows.Forms.SaveFileDialog SaveFile;
     }
 }
 

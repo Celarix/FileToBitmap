@@ -31,11 +31,8 @@
             this.GroupColorPanels = new System.Windows.Forms.GroupBox();
             this.LabelColorIndex = new System.Windows.Forms.Label();
             this.LabelStaticRed = new System.Windows.Forms.Label();
-            this.TextRed = new System.Windows.Forms.TextBox();
-            this.TextGreen = new System.Windows.Forms.TextBox();
             this.LabelStaticGreen = new System.Windows.Forms.Label();
             this.LabelStaticBlue = new System.Windows.Forms.Label();
-            this.TextBlue = new System.Windows.Forms.TextBox();
             this.LabelStaticHex = new System.Windows.Forms.Label();
             this.TextHex = new System.Windows.Forms.TextBox();
             this.ButtonAdvanced = new System.Windows.Forms.Button();
@@ -43,6 +40,13 @@
             this.ButtonCancel = new System.Windows.Forms.Button();
             this.ButtonSetColor = new System.Windows.Forms.Button();
             this.ColorSelectorDialog = new System.Windows.Forms.ColorDialog();
+            this.NumericRed = new System.Windows.Forms.NumericUpDown();
+            this.NumericGreen = new System.Windows.Forms.NumericUpDown();
+            this.NumericBlue = new System.Windows.Forms.NumericUpDown();
+            this.LabelInvalidHex = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericRed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericGreen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericBlue)).BeginInit();
             this.SuspendLayout();
             // 
             // GroupColorPanels
@@ -72,24 +76,10 @@
             this.LabelStaticRed.TabIndex = 2;
             this.LabelStaticRed.Text = "R:";
             // 
-            // TextRed
-            // 
-            this.TextRed.Location = new System.Drawing.Point(458, 52);
-            this.TextRed.Name = "TextRed";
-            this.TextRed.Size = new System.Drawing.Size(28, 22);
-            this.TextRed.TabIndex = 3;
-            // 
-            // TextGreen
-            // 
-            this.TextGreen.Location = new System.Drawing.Point(512, 52);
-            this.TextGreen.Name = "TextGreen";
-            this.TextGreen.Size = new System.Drawing.Size(28, 22);
-            this.TextGreen.TabIndex = 5;
-            // 
             // LabelStaticGreen
             // 
             this.LabelStaticGreen.AutoSize = true;
-            this.LabelStaticGreen.Location = new System.Drawing.Point(492, 55);
+            this.LabelStaticGreen.Location = new System.Drawing.Point(505, 55);
             this.LabelStaticGreen.Name = "LabelStaticGreen";
             this.LabelStaticGreen.Size = new System.Drawing.Size(18, 13);
             this.LabelStaticGreen.TabIndex = 4;
@@ -98,18 +88,11 @@
             // LabelStaticBlue
             // 
             this.LabelStaticBlue.AutoSize = true;
-            this.LabelStaticBlue.Location = new System.Drawing.Point(546, 55);
+            this.LabelStaticBlue.Location = new System.Drawing.Point(580, 55);
             this.LabelStaticBlue.Name = "LabelStaticBlue";
             this.LabelStaticBlue.Size = new System.Drawing.Size(17, 13);
             this.LabelStaticBlue.TabIndex = 6;
             this.LabelStaticBlue.Text = "B:";
-            // 
-            // TextBlue
-            // 
-            this.TextBlue.Location = new System.Drawing.Point(569, 52);
-            this.TextBlue.Name = "TextBlue";
-            this.TextBlue.Size = new System.Drawing.Size(28, 22);
-            this.TextBlue.TabIndex = 7;
             // 
             // LabelStaticHex
             // 
@@ -124,49 +107,104 @@
             // 
             this.TextHex.Location = new System.Drawing.Point(458, 80);
             this.TextHex.Name = "TextHex";
-            this.TextHex.Size = new System.Drawing.Size(139, 22);
+            this.TextHex.Size = new System.Drawing.Size(186, 22);
             this.TextHex.TabIndex = 9;
+            this.TextHex.TextChanged += new System.EventHandler(this.TextHex_TextChanged);
             // 
             // ButtonAdvanced
             // 
             this.ButtonAdvanced.Location = new System.Drawing.Point(426, 137);
             this.ButtonAdvanced.Name = "ButtonAdvanced";
-            this.ButtonAdvanced.Size = new System.Drawing.Size(171, 23);
+            this.ButtonAdvanced.Size = new System.Drawing.Size(218, 23);
             this.ButtonAdvanced.TabIndex = 10;
             this.ButtonAdvanced.Text = "&Advanced...";
             this.ButtonAdvanced.UseVisualStyleBackColor = true;
+            this.ButtonAdvanced.Click += new System.EventHandler(this.ButtonAdvanced_Click);
             // 
             // ButtonOK
             // 
             this.ButtonOK.Location = new System.Drawing.Point(426, 341);
             this.ButtonOK.Name = "ButtonOK";
-            this.ButtonOK.Size = new System.Drawing.Size(171, 23);
+            this.ButtonOK.Size = new System.Drawing.Size(218, 23);
             this.ButtonOK.TabIndex = 11;
             this.ButtonOK.Text = "&OK";
             this.ButtonOK.UseVisualStyleBackColor = true;
+            this.ButtonOK.Click += new System.EventHandler(this.ButtonOK_Click);
             // 
             // ButtonCancel
             // 
             this.ButtonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.ButtonCancel.Location = new System.Drawing.Point(426, 370);
             this.ButtonCancel.Name = "ButtonCancel";
-            this.ButtonCancel.Size = new System.Drawing.Size(171, 23);
+            this.ButtonCancel.Size = new System.Drawing.Size(218, 23);
             this.ButtonCancel.TabIndex = 12;
             this.ButtonCancel.Text = "&Cancel";
             this.ButtonCancel.UseVisualStyleBackColor = true;
+            this.ButtonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
             // ButtonSetColor
             // 
             this.ButtonSetColor.Location = new System.Drawing.Point(426, 108);
             this.ButtonSetColor.Name = "ButtonSetColor";
-            this.ButtonSetColor.Size = new System.Drawing.Size(171, 23);
+            this.ButtonSetColor.Size = new System.Drawing.Size(218, 23);
             this.ButtonSetColor.TabIndex = 13;
             this.ButtonSetColor.Text = "&Set Color";
             this.ButtonSetColor.UseVisualStyleBackColor = true;
+            this.ButtonSetColor.Click += new System.EventHandler(this.ButtonSetColor_Click);
             // 
             // ColorSelectorDialog
             // 
             this.ColorSelectorDialog.FullOpen = true;
+            // 
+            // NumericRed
+            // 
+            this.NumericRed.Location = new System.Drawing.Point(458, 52);
+            this.NumericRed.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.NumericRed.Name = "NumericRed";
+            this.NumericRed.Size = new System.Drawing.Size(41, 22);
+            this.NumericRed.TabIndex = 14;
+            this.NumericRed.ValueChanged += new System.EventHandler(this.NumericRed_ValueChanged);
+            // 
+            // NumericGreen
+            // 
+            this.NumericGreen.Location = new System.Drawing.Point(529, 52);
+            this.NumericGreen.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.NumericGreen.Name = "NumericGreen";
+            this.NumericGreen.Size = new System.Drawing.Size(41, 22);
+            this.NumericGreen.TabIndex = 15;
+            this.NumericGreen.ValueChanged += new System.EventHandler(this.NumericGreen_ValueChanged);
+            // 
+            // NumericBlue
+            // 
+            this.NumericBlue.Location = new System.Drawing.Point(603, 52);
+            this.NumericBlue.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.NumericBlue.Name = "NumericBlue";
+            this.NumericBlue.Size = new System.Drawing.Size(41, 22);
+            this.NumericBlue.TabIndex = 16;
+            this.NumericBlue.ValueChanged += new System.EventHandler(this.NumericBlue_ValueChanged);
+            // 
+            // LabelInvalidHex
+            // 
+            this.LabelInvalidHex.AutoSize = true;
+            this.LabelInvalidHex.ForeColor = System.Drawing.Color.Red;
+            this.LabelInvalidHex.Location = new System.Drawing.Point(426, 167);
+            this.LabelInvalidHex.Name = "LabelInvalidHex";
+            this.LabelInvalidHex.Size = new System.Drawing.Size(202, 13);
+            this.LabelInvalidHex.TabIndex = 17;
+            this.LabelInvalidHex.Text = "That isn\'t a valid hexadecimal number.";
+            this.LabelInvalidHex.Visible = false;
             // 
             // PaletteEditorForm
             // 
@@ -174,18 +212,19 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.ButtonCancel;
-            this.ClientSize = new System.Drawing.Size(609, 406);
+            this.ClientSize = new System.Drawing.Size(649, 406);
+            this.Controls.Add(this.LabelInvalidHex);
+            this.Controls.Add(this.NumericBlue);
+            this.Controls.Add(this.NumericGreen);
+            this.Controls.Add(this.NumericRed);
             this.Controls.Add(this.ButtonSetColor);
             this.Controls.Add(this.ButtonCancel);
             this.Controls.Add(this.ButtonOK);
             this.Controls.Add(this.ButtonAdvanced);
             this.Controls.Add(this.TextHex);
             this.Controls.Add(this.LabelStaticHex);
-            this.Controls.Add(this.TextBlue);
             this.Controls.Add(this.LabelStaticBlue);
-            this.Controls.Add(this.TextGreen);
             this.Controls.Add(this.LabelStaticGreen);
-            this.Controls.Add(this.TextRed);
             this.Controls.Add(this.LabelStaticRed);
             this.Controls.Add(this.LabelColorIndex);
             this.Controls.Add(this.GroupColorPanels);
@@ -195,6 +234,9 @@
             this.MinimizeBox = false;
             this.Name = "PaletteEditorForm";
             this.Text = "Palette Editor";
+            ((System.ComponentModel.ISupportInitialize)(this.NumericRed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericGreen)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericBlue)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -205,11 +247,8 @@
         private System.Windows.Forms.GroupBox GroupColorPanels;
         private System.Windows.Forms.Label LabelColorIndex;
         private System.Windows.Forms.Label LabelStaticRed;
-        private System.Windows.Forms.TextBox TextRed;
-        private System.Windows.Forms.TextBox TextGreen;
         private System.Windows.Forms.Label LabelStaticGreen;
         private System.Windows.Forms.Label LabelStaticBlue;
-        private System.Windows.Forms.TextBox TextBlue;
         private System.Windows.Forms.Label LabelStaticHex;
         private System.Windows.Forms.TextBox TextHex;
         private System.Windows.Forms.Button ButtonAdvanced;
@@ -217,6 +256,10 @@
         private System.Windows.Forms.Button ButtonCancel;
         private System.Windows.Forms.Button ButtonSetColor;
         private System.Windows.Forms.ColorDialog ColorSelectorDialog;
+        private System.Windows.Forms.NumericUpDown NumericRed;
+        private System.Windows.Forms.NumericUpDown NumericGreen;
+        private System.Windows.Forms.NumericUpDown NumericBlue;
+        private System.Windows.Forms.Label LabelInvalidHex;
 
 
     }
